@@ -15,34 +15,50 @@ namespace StaticFileRefresh.Helpers
 {
     public static class JavascriptExtension
     {
+        private static readonly StringDictionary allowedFileTypes = new StringDictionary() { { "js", "application/javascript" } };
         public static MvcHtmlString IncludeVersionedJs(this HtmlHelper helper, string relativeFilePathQuery)
         {
-            string version = GetVersion(helper, relativeFilePathQuery);
-            return MvcHtmlString.Create("<script type='text/javascript' src='" + relativeFilePathQuery + version + "'></script>");
+            string actualPathToLoad = string.Empty;
+            string version = GetVersion(helper, relativeFilePathQuery, out actualPathToLoad);
+            return MvcHtmlString.Create("<script type='text/javascript' src='" + actualPathToLoad + version + "'></script>");
         }
 
-        private static string GetVersion(this HtmlHelper helper, string relativeFilePathQuery)
+        private static string GetVersion(this HtmlHelper helper, string relativeFilePathQuery, out string actualPathToLoad)
         {
+            actualPathToLoad = string.Empty;
             var context = helper.ViewContext.RequestContext.HttpContext;
             string relativeFilePath = relativeFilePathQuery.Split('?')[0];
+            int idx = relativeFilePathQuery.IndexOf('?');
+            string query = idx >= 0 ? relativeFilePathQuery.Substring(idx) : "";
+            string referringSourceApp = string.IsNullOrWhiteSpace(HttpUtility.ParseQueryString(query).Get("s")) ? "en" : HttpUtility.ParseQueryString(query).Get("s");
+            List<FileReferenceEntity> staticFiles = FileReferenceEntity.GetFileReferences();
 
-            if (context.Cache[relativeFilePath] == null)
+            foreach (FileReferenceEntity file in staticFiles)
+            {
+                if (string.Equals(file.Key, referringSourceApp, StringComparison.OrdinalIgnoreCase))
+                {
+                    actualPathToLoad = file.Value + "?s=" + referringSourceApp;
+                    break;
+                }
+            }
+
+            if (context.Cache[relativeFilePathQuery] == null)
             {
                 var physicalPath = context.Server.MapPath(relativeFilePath);
                 var version = $"&v={new System.IO.FileInfo(physicalPath).LastWriteTime.ToString("yyyyMMddHHmmss")}";
                 string dependencyFile1 = physicalPath;
                 string dependencyFile2 = @"C:\inetpub\wwwroot\Publish\StaticFileRefresh\FileReferenceMapper.config";
                 string[] dependencies = new string[] { dependencyFile1, dependencyFile2 };
-                context.Cache.Insert(relativeFilePath, version, new CacheDependency(dependencies));
+                context.Cache.Insert(relativeFilePathQuery, version, new CacheDependency(dependencies));
                 return version;
             }
             else
             {
-                return context.Cache[relativeFilePath] as string;
+                return context.Cache[relativeFilePathQuery] as string;
             }
         }
     }
-
+    /*
     public class FileBundleHandler: IHttpHandler
     {
         private static readonly StringDictionary allowedFileTypes = new StringDictionary() { { "js", "application/javascript" } };
@@ -150,7 +166,7 @@ namespace StaticFileRefresh.Helpers
             return flag;
         }
     }
-
+    */
     public class FileReferenceEntity
     {
         public string Key { get; set; }

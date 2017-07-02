@@ -1,2 +1,2 @@
-﻿$("#left-content").append("Welcome");
-$("#right-content").append("Sathya");
+﻿$("#left-content").append("Version - Default");
+$("#right-content").append("Path - D:\Github\StaticFileRefresh\StaticFileRefresh\Scripts\Main.js");
