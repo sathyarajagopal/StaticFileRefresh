@@ -1,0 +1,242 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+    vertical-align: top;
+    font-size: .813em;
+    line-height: 1.4em;
+    color: #505050;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    height: 100%;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+header {
+    background-color: black;
+    min-height: 40px;
+}
+
+    header:after {
+        clear: both;
+        content: '.';
+        display: block;
+        visibility: hidden;
+        height: 0;
+    }
+
+.header {
+    background-color: black;
+    height: 20%;
+}
+
+.hdr-content, .body-content, .ftr-content {
+    padding: 5px;
+    /*border: 2px solid yellow;*/
+    /*color: white;*/
+}
+
+.img {
+    display: inline-block;
+    background-image: url(/StaticFileRefresh/Content/img/hashtag-icon.png);
+    background-position: 0 -500px;
+}
+
+.clearfix:after {
+    clear: both;
+    content: '.';
+    display: block;
+    visibility: hidden;
+    height: 0;
+}
+
+nav {
+    background-image: linear-gradient(135deg,#232965 30%,#474f87 99%);
+}
+
+    nav ul {
+        list-style: none;
+    }
+
+        nav ul li {
+            float: left;
+        }
+
+    nav.nav-main > div {
+        margin: 0 auto;
+        padding: 0 10px;
+        max-width: 1180px;
+    }
+
+        nav.nav-main > div > a {
+            color: #fff;
+            float: left;
+            font-size: 18px;
+            line-height: 30px;
+            margin-right: 15px;
+        }
+
+            nav.nav-main > div > a:hover {
+                text-decoration: none;
+            }
+
+            nav.nav-main > div > a.icon {
+                float: right;
+                margin-right: 15px;
+            }
+
+    nav.nav-main li a {
+        font-size: 14px;
+        color: #bdc0d7;
+        display: block;
+        line-height: 1;
+        padding: 8px 13px;
+        text-decoration: none;
+    }
+
+        nav.nav-main li a:hover {
+            background-color: #120e38;
+        }
+
+        nav.nav-main li a.active {
+            background-color: #120e38;
+        }
+
+        nav.nav-main li a.selected {
+            background-color: #120e38;
+            text-decoration: none;
+            color: #fff;
+        }
+
+            nav.nav-main li a.selected.active {
+                background-color: #120e38;
+            }
+
+div.clear {
+    clear: both;
+    height: 1px;
+    font-size: 1px;
+    padding: 0;
+    margin: 0;
+}
+
+a, a:link, a:visited {
+    color: #2b59a9;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #e6e7e8;
+    margin-top: 30px;
+}
+
+.footer {
+    margin: 0 auto;
+    padding: 25px 10px;
+    max-width: 1180px;
+    position: relative;
+    font-family: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+}
+
+    .footer li {
+        margin-bottom: 3px;
+        padding: 0;
+    }
+
+    .footer:after {
+        clear: both;
+        content: '.';
+        display: block;
+        visibility: hidden;
+        height: 0;
+    }
+
+    .footer a {
+        text-decoration: none;
+    }
+
+h2 {
+    font-size: 18px;
+    color: #222;
+    margin: 0 0 13px 0;
+    font-weight: normal;
+    font-family: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+    line-height: 1.4em;
+}
+
+.footer-menu {
+    margin: 0;
+    list-style: none;
+    float: left;
+    padding: 0;
+}
+
+    .footer-menu.last {
+        float: right;
+    }
+
+    .footer-menu .separator {
+        padding: 0 7px;
+        color: #231f20;
+    }
+
+    .footer-menu li.block {
+        float: none;
+        margin-bottom: 0;
+    }
+
+    .footer-menu li {
+        float: left;
+        color: #231f20;
+    }
+
+    .footer-menu h2 {
+        font-size: 1em;
+        color: #231f20;
+        font-weight: normal;
+        margin: 0 0 10px 0;
+        font-family: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+        background: none;
+    }
+
+        .footer-menu:after {
+            clear: both;
+            content: '.';
+            display: block;
+            visibility: hidden;
+            height: 0;
+        }
+
+        .footer-menu li:after {
+            clear: both;
+            content: '.';
+            display: block;
+            visibility: hidden;
+            height: 0;
+        }
+
+        .footer-menu a {
+            color: #231f20;
+        }
+
+.separator {
+    padding: 0 5px;
+    color: #707070;
+}
